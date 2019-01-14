@@ -4,8 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import fastCilck from 'fastclick'
-import './assets/styles/reset.css'
-import './assets/styles/border.css'
+import 'styles/reset.css'
+import 'styles/border.css'
+import 'styles/iconfont.css'
+// import './assets/styles/reset.css'
+// import './assets/styles/border.css'
+// import './assets/styles/iconfont.css'
+
 //* fastClick解决移动端点击延迟300ms的问题 */
 Vue.config.productionTip = false
 fastCilck.attach(document.body)
