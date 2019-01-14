@@ -1,11 +1,9 @@
 <template>
   <div class="wrapper">
     <swiper :options="swiperOption">
-      <!-- slides -->
       <swiper-slide v-for="item of swiperList" :key="item.id">
         <img class="swiper-img" :src="item.imgUrl">
       </swiper-slide>
-      <!-- Optional controls -->
       <div
         class="swiper-pagination"
         slot="pagination"
@@ -45,7 +43,7 @@ export default {
 .wrapper
   width: 100%
   height: 0
-  padding-bottom: 31.25%
+  padding-bottom: 26.7%
   background: #eee
   /* 设置宽高比例为31.25% */
   .swiper-img
