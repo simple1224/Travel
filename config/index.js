@@ -12,9 +12,9 @@ module.exports = {
     assetsPublicPath: '/',
     // 只要开头是api 改变请求路径
     proxyTable: {
-      'api':{
-        target:'http:localhost:8080',
-        pathRewiter:{
+      '/api':{
+        target:'http://localhost:8080',
+        pathRewrite:{
           '^/api':'/static/mock'
         }
       }

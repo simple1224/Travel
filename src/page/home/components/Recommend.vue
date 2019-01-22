@@ -5,7 +5,7 @@
       <!-- border-bottom 1像素边框的使用 -->
       <li
         class="item border-bottom"
-        v-for="item of recommendList"
+        v-for="item of list"
         :key="item.id"
       >
         <img
@@ -25,31 +25,34 @@
 <script>
 export default {
   name: "HomeRecommend",
+  props:{
+    list:Array
+  },
   data() {
     return{
-        recommendList: [
-      {
-        id: "0001",
-        imgUrl:
-          "http://img1.qunarzz.com/sight/p0/1602/de/de8400021b664c5390.img.jpg_200x200_46b16057.jpg",
-        title: "大连圣亚海洋世界",
-        desc: "浪漫大连站，浪漫的海洋主题公园"
-      },
-      {
-        id: "0002",
-        imgUrl:
-          "http://img1.qunarzz.com/sight/p0/1602/de/de8400021b664c5390.img.jpg_200x200_46b16057.jpg",
-        title: "大连圣亚海洋世界",
-        desc: "浪漫大连站，浪漫的海洋主题公园"
-      },
-      {
-        id: "0003",
-        imgUrl:
-          "http://img1.qunarzz.com/sight/p0/1602/de/de8400021b664c5390.img.jpg_200x200_46b16057.jpg",
-        title: "大连圣亚海洋世界",
-        desc: "浪漫大连站，浪漫的海洋主题公园"
-      }
-    ],
+    //     recommendList: [
+    //   {
+    //     id: "0001",
+    //     imgUrl:
+    //       "http://img1.qunarzz.com/sight/p0/1602/de/de8400021b664c5390.img.jpg_200x200_46b16057.jpg",
+    //     title: "大连圣亚海洋世界",
+    //     desc: "浪漫大连站，浪漫的海洋主题公园"
+    //   },
+    //   {
+    //     id: "0002",
+    //     imgUrl:
+    //       "http://img1.qunarzz.com/sight/p0/1602/de/de8400021b664c5390.img.jpg_200x200_46b16057.jpg",
+    //     title: "大连圣亚海洋世界",
+    //     desc: "浪漫大连站，浪漫的海洋主题公园"
+    //   },
+    //   {
+    //     id: "0003",
+    //     imgUrl:
+    //       "http://img1.qunarzz.com/sight/p0/1602/de/de8400021b664c5390.img.jpg_200x200_46b16057.jpg",
+    //     title: "大连圣亚海洋世界",
+    //     desc: "浪漫大连站，浪漫的海洋主题公园"
+    //   }
+    // ],
     }
   }
 };

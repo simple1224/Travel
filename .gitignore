@@ -4,6 +4,8 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+# 不把mock的静态资源提交到git
+static/mock
 
 # Editor directories and files
 .idea
