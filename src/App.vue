@@ -3,13 +3,15 @@
     <!--  -->
     <!-- <img src="./assets/logo.png"> -->
     <!-- router-view显示的是当前路由地址所对应的内容 即HelloWorld组件-->
-    <router-view/>
+    <keep-alive>
+      <router-view />
+    </keep-alive>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: "App"
 };
 </script>
 

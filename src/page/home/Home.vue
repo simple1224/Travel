@@ -9,54 +9,66 @@
 </template>
 <script>
 // script写当前组件的逻辑
-import HomeHeader from './components/Header'
-import HomeSwiper from './components/Swiper'
-import HomeIcons from './components/Icons'
-import HomeRecommend from './components/Recommend'
-import HomeWeekend from './components/Weekend'
+import HomeHeader from "./components/Header";
+import HomeSwiper from "./components/Swiper";
+import HomeIcons from "./components/Icons";
+import HomeRecommend from "./components/Recommend";
+import HomeWeekend from "./components/Weekend";
 // ajax的使用
-import axios from 'axios'
+import axios from "axios";
+import { mapState } from "vuex";
 
 export default {
   // 导出一个对象 写一个组件的名字
-  name: 'Home',
-  components:{
+  name: "Home",
+  components: {
     HomeHeader,
     HomeSwiper,
     HomeIcons,
     HomeRecommend,
     HomeWeekend
   },
-  data(){
-    return{
-      // city:'',
-      swiperList:[],
-      iconList:[],
-      recommendList:[],
-      weekendList:[]
-    }
+  computed: {
+    ...mapState(['city'])
   },
-  methods:{
-    getHomeInfo () {
-      axios.get('/api/index.json')
-      .then(this.getHomeInfoSucc)
+  data() {
+    return {
+      // city:'',
+      lastCity:'',
+      swiperList: [],
+      iconList: [],
+      recommendList: [],
+      weekendList: []
+    };
+  },
+  methods: {
+    getHomeInfo() {
+      axios.get('/api/index.json?city='+this.city)
+      .then(this.getHomeInfoSucc);
     },
-    getHomeInfoSucc(res){
-      res = res.data
-      if(res.ret && res.data){
-        const data = res.data
+    getHomeInfoSucc(res) {
+      res = res.data;
+      if (res.ret && res.data) {
+        const data = res.data;
         // this.city = res.city
-        this.swiperList = data.swiperList
-        this.iconList = data.iconList
-        this.recommendList = data.recommendList
-        this.weekendList = data.weekendList
+        this.swiperList = data.swiperList;
+        this.iconList = data.iconList;
+        this.recommendList = data.recommendList;
+        this.weekendList = data.weekendList;
       }
     }
   },
   // mounted 页面挂载后调用
-   mounted(){
-    this.getHomeInfo()
+  mounted() {
+    this.lastCity = this.city
+    this.getHomeInfo();
   },
+  activated(){
+    if(this.lastCity !== this.city){
+      this.lastCity = this.city
+      this.getHomeInfo()
+    }
+  }
 };
 </script>
 <style>
