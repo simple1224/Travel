@@ -17,7 +17,8 @@
           </div>
         </div>
       </div>
-      <div class="area" v-for="(item,key) of cities" :key="key">
+      <!-- 这里循环的是对象 所以是key 不是index 这里的key是字母 ref的作用是获取dom结构 -->
+      <div class="area" v-for="(item,key) of cities" :key="key" :ref="key">
         <div class="title border-topbottom">{{key}}</div>
         <div class="item-list">
           <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">
@@ -35,10 +36,22 @@ export default {
   name: "CityList",
   props:{
     cities:Object,
-    hot:Array
+    hot:Array,
+    letter:String
   },
   mounted(){
       this.scroll = new BScroll(this.$refs.wrapper)
+  },
+  // 监听事件
+  watch:{
+    letter(){
+      console.log(this.letter)
+      // BScroll 提供方法 指定滚动到某个元素上
+      if(this.letter){
+        const element = this.$refs[this.letter][0]
+         this.scroll.scrollToElement(element)
+      }
+    }
   }
 };
 </script>
