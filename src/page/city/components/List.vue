@@ -1,27 +1,48 @@
 <template>
-  <div class="list" ref="wrapper">
+  <div
+    class="list"
+    ref="wrapper"
+  >
     <div>
       <div class="area">
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-warpper">
-            <div class="button">北京</div>
+            <div class="button">
+              <!-- {{this.$store.state.city}} -->
+              {{this.currentCity}}
+            </div>
           </div>
         </div>
       </div>
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="button-list">
-          <div class="button-warpper" v-for="item of hot" :key="item.id">
+          <div
+            class="button-warpper"
+            v-for="item of hot"
+            :key="item.id"
+            @click="handleCityClick(item.name)"
+          >
             <div class="button">{{item.name}}</div>
           </div>
         </div>
       </div>
       <!-- 这里循环的是对象 所以是key 不是index 这里的key是字母 ref的作用是获取dom结构 -->
-      <div class="area" v-for="(item,key) of cities" :key="key" :ref="key">
+      <div
+        class="area"
+        v-for="(item,key) of cities"
+        :key="key"
+        :ref="key"
+      >
         <div class="title border-topbottom">{{key}}</div>
         <div class="item-list">
-          <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">
+          <div
+            class="item border-bottom"
+            v-for="innerItem of item"
+            :key="innerItem.id"
+            @click="handleCityClick(innerItem.name)"
+          >
             {{innerItem.name}}
           </div>
         </div>
@@ -31,27 +52,46 @@
   </div>
 </template>
 <script>
-import BScroll from 'better-scroll'
+import BScroll from "better-scroll";
+import { mapState,mapMutations} from "vuex";
+
 export default {
   name: "CityList",
-  props:{
-    cities:Object,
-    hot:Array,
-    letter:String
+  props: {
+    cities: Object,
+    hot: Array,
+    letter: String
   },
-  mounted(){
-      this.scroll = new BScroll(this.$refs.wrapper)
+  computed: {
+    ...mapState({
+      currentCity: "city"
+    })
+  },
+  methods: {
+    //点击城市时 这个函数会被派发
+    handleCityClick(city) {
+      // alert(city)
+      // this.$store.dispatch('changeCity',city)
+
+      // this.$store.commit("changeCity", city);
+      this.changeCity(city)
+      this.$router.push("/");
+    },
+    ...mapMutations(['changeCity'])
   },
   // 监听事件
-  watch:{
-    letter(){
-      console.log(this.letter)
+  watch: {
+    letter() {
+      console.log(this.letter);
       // BScroll 提供方法 指定滚动到某个元素上
-      if(this.letter){
-        const element = this.$refs[this.letter][0]
-         this.scroll.scrollToElement(element)
+      if (this.letter) {
+        const element = this.$refs[this.letter][0];
+        this.scroll.scrollToElement(element);
       }
     }
+  },
+  mounted() {
+    this.scroll = new BScroll(this.$refs.wrapper);
   }
 };
 </script>

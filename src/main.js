@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 import fastCilck from 'fastclick'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import store from './store'
+
 import 'styles/reset.css'
 import 'styles/border.css'
 import 'styles/iconfont.css'
@@ -23,6 +25,7 @@ new Vue({
   /* 这里挂载的是index.html id="app"的标签 */
   el: '#app',
   router,
+  store,
   /* router:router es6写法：当键值相同时 可以省略一个 */
   /* compontents是在这里定义一个局部组件 在这里注册一下 */
   components: {App},

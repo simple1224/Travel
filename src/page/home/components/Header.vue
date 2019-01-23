@@ -9,6 +9,8 @@
     </div>
     <router-link to="/city">
       <div class="header-right">
+        <!-- {{this.city}} -->
+        <!-- {{this.$store.state.city}} -->
         {{this.city}}
         <span class="iconfont arrow-icon">&#xe64a;</span>
       </div>
@@ -16,12 +18,17 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 // script写当前组件的逻辑
 export default {
   // 导出一个对象 写一个组件的名字
   name: "HomeHeader",
-  props: {
-    city: String
+  // props: {
+  //   city: String
+  // }
+  // ...mapState展开运算符 把vuex内的数据映射到这个组件computed里
+  computed: {
+    ...mapState(['city'])
   }
 };
 </script>
@@ -51,10 +58,11 @@ export default {
     color: #ccc
     padding-left: 0.2rem
   .header-right
-    width: 1.24rem
+    min-width: 1.04rem
+    padding: 0 0.1rem
     float: rigth
     text-align: center
-    color:#fff
+    color: #fff
     .arrow-icon
       font-size: 0.24rem
       margin-left: -0.04rem
