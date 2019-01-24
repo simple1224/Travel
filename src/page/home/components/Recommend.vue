@@ -3,10 +3,11 @@
     <div class="recommend-tile">热销推荐</div>
     <ul>
       <!-- border-bottom 1像素边框的使用 -->
-      <li
+      <router-link tag="li"
         class="item border-bottom"
         v-for="item of list"
         :key="item.id"
+        :to="'/detail/' +item.id"
       >
         <img
           class="item-img"
@@ -17,7 +18,7 @@
           <p class="item-desc">{{item.desc}}</p>
           <button class="item-button">查看详情</button>
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
