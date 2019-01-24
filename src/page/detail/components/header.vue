@@ -33,12 +33,13 @@ export default {
   },
   methods: {
     handleScroll() {
+        console.log('scroll')
       const top = document.documentElement.scrollTop;
       if (top > 60) {
-        console.log("长度超过60");
+        // console.log("长度超过60");
         let opacity = top / 140;
         opacity = opacity > 1 ? 1 : opacity;
-        this.opacityStyle = {opacity:opacity};
+        this.opacityStyle = { opacity: opacity };
         this.showAbs = false;
       } else {
         this.showAbs = true;
@@ -49,6 +50,10 @@ export default {
   activated() {
     //   绑定scroll事件 一旦这个函数执行 对应的handleScroll函数就会执行
     window.addEventListener("scroll", this.handleScroll);
+  },
+  //   解绑全局事件 否则全部页面都会实现这个函数
+  deactivated() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
 };
 </script>
